@@ -1,0 +1,7 @@
+﻿/*iPhone4-320  */
+@media screen and (orientation: portrait) and (max-device-width: 320px) {
+  .test {
+    margin-top: 20px;
+    font-size: 9vh;
+  }
+}

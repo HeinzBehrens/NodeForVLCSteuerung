@@ -1,0 +1,61 @@
+﻿<div class="row Steuerung">
+    <div class="col-xs-6  SteuerungCol" ng-click="go('/')">
+        <img src="../images/Back.png" />
+    </div>
+    <div class="col-xs-6 SteuerungCol" ng-click="sendStartStop()">
+        <div class="thumbnail">
+            <img class="p-t-3" ng-src="{{StartStopImage}}" />
+        </div>
+    </div>
+</div>
+
+<div class="row Steuerung">
+    <div class="col-xs-6 SteuerungCol">
+        <div class="thumbnail">
+            <img ng-click="sendSeek(-2)" src="../images/-2s.png" />
+        </div>
+    </div>
+    <div class="col-xs-6 SteuerungCol">
+        <div class="thumbnail">
+            <img ng-click="sendSeek(+2)" src="../images/+2s.png" />
+        </div>
+    </div>
+</div>
+
+<div class="row Steuerung">
+    <div class="col-xs-6 SteuerungCol">
+        <div class="thumbnail" style="margin-left:0; margin-right:0">
+            <img ng-click="sendSeek(-10)" src="../images/-10s.png" />
+        </div>
+    </div>
+    <div class="col-xs-6 SteuerungCol">
+        <div class="thumbnail">
+            <img ng-click="sendSeek(+10)" src="../images/+10s.png" />
+        </div>
+    </div>
+</div>
+<div class="row Steuerung SteuerungCol">
+    <div class="col-xs-6 SteuerungCol">
+        <div class="thumbnail">
+            <img ng-click="sendSeek(-60)" src="../images/-1min.png" />
+        </div>
+    </div>
+    <div class="col-xs-6 SteuerungCol">
+        <div class="thumbnail">
+            <img ng-click="sendSeek(+60)" src="../images/+1min.png" />
+
+        </div>
+    </div>
+</div>
+<div class="row Steuerung ">
+    <div class="col-xs-6 SteuerungCol">
+        <div class="thumbnail">
+            <img ng-click="sendSeek(-300)" src="../images/-5min.png" />
+        </div>
+    </div>
+    <div class="col-xs-6 SteuerungCol">
+        <div class="thumbnail">
+            <img ng-click="sendSeek(+300)" src="../images/+5min.png" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,131 @@
+﻿<!--<div ng-controller="mainCtrl" ng-cloak class="container">-->
+<!-- ====================================== -->
+<!-- ====================================== -->
+<!-- OBERSTE REIHE:  BILD uns SEASON/EPISODE-->
+<!-- ====================================== -->
+<!-- ====================================== -->
+<!--    <div class="row row-eq-height no-gutters ">-->
+<div class="row row-eq-height">
+    <div class="col-xs-6">
+        <img ng-click="go('/moreInfo')" ng-src="{{imgSource}}" class="hbeImg" />
+    </div>
+
+    <div class="col-xs-6   episea" ng-class="getSEClass(imdbURL)" ng-click="goext(imdbURL)">
+            <a>
+                <h1 class="test" ng-href="#/moreInfo">
+
+                    <br class="notOnIphone" />
+
+                    <span class="onlyOnIphone">S:</span>
+                    <span class="notOnIphone">Season:</span>
+
+                    <br class="rwd-break notOnIphone" />
+
+                    {{Season}}
+
+                    <br />
+
+                    <span class="onlyOnIphone">E:</span>
+                    <span class="notOnIphone">Episode:</span>
+
+                    <br class="rwd-break notOnIphone" />
+                    {{Episode}}
+                </h1>
+
+            </a>
+        </div>
+
+</div>
+
+
+<!--<hr>-->
+<!-- ====================================== -->
+<!-- ====================================== -->
+<!-- Show und Titel der Episode             -->
+<!-- ====================================== -->
+<!-- ====================================== -->
+<div class="row hbe  " ng-click="go('/Steuerung')">
+        <div class="col-xs-12 ">
+            <div class="demo-content">
+                <h2>{{Show}}</h2>
+                <h2>Titel:{{Titel}}</h2>
+            </div>
+        </div>
+    </div>
+
+
+<!-- ====================================== -->
+<!-- ====================================== -->
+<!--       UHRZEITEN - LAUFENDE ZEITEN      -->
+<!-- ====================================== -->
+<!-- ====================================== -->
+<div class="row hbe row-eq-height">
+    <div class="col-xs-6 ">
+        <div class="demo-content">
+            <h2>Time:<br class="rwd-break" />{{aktZeit | date:"HH:mm:ss"}}</h2>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 hbeR">
+        <div>
+            <h2>End: <br class="rwd-break" />{{endZeit | date:"HH:mm:ss"}}</h2>
+        </div>
+    </div>
+</div>
+<div class="row hbe row-eq-height ">
+    <div class="col-xs-6 hbe">
+        <div><h2>Current: <br class="rwd-break" />{{runTime | date:"H:mm:ss"}}</h2></div>
+    </div>
+    <div class="col-xs-6 hbe">
+        <div><h2>Left: <br class="rwd-break" />{{leftTime | date:"H:mm:ss"}}</h2></div>
+    </div>
+</div>
+
+<div id="hbeIdImg" class="row no-gutters"> </div>
+
+<!-- ====================================== -->
+<!-- ====================================== -->
+<!--                  CAROUSEL              -->
+<!-- ====================================== -->
+<!-- ====================================== -->
+<div class="row">
+    <div class="col-xs-12" style="height: 225px">
+        <uib-carousel id="carousel5" active="active" interval=3000 no-wrap=false>
+            <uib-slide ng-repeat="film in playlist track by film.ndx" index="film.ndx">
+                <img ng-src="{{film.imgSrcNode}}" class="img-responsive center-block" width="150"
+                     height="225" ng-click="getScreenwidth()">
+                <div class="carousel-caption">
+                    <h4>S{{film.Season}}E{{film.Episode}}</h4>
+                </div>
+            </uib-slide>
+        </uib-carousel>
+    </div>
+</div>
+
+<!--TESTBEREICH CAROUSEL -  TESTBEREICH CAROUSEL -  TESTBEREICH CAROUSEL -  TESTBEREICH CAROUSEL -  TESTBEREICH CAROUSEL --->
+<!--TESTBEREICH CAROUSEL -  TESTBEREICH CAROUSEL -  TESTBEREICH CAROUSEL -  TESTBEREICH CAROUSEL -  TESTBEREICH CAROUSEL --->
+<!--TESTBEREICH CAROUSEL -  TESTBEREICH CAROUSEL -  TESTBEREICH CAROUSEL -  TESTBEREICH CAROUSEL -  TESTBEREICH CAROUSEL --->
+
+<div class="row no-gutters" style="height:200px">
+    <!--<img class="img2" holder="holder.js/300x441?random=yes&text=1"  width:"20%" />
+    <img class="img2"  holder="holder.js/300x441?random=yes&text=2" />
+    <img class="img2"  holder="holder.js/300x441?random=yes&text=3" />
+    <img class="img2"  holder="holder.js/300x441?random=yes&text=4" />
+    <img class="img2"  holder="holder.js/300x441?random=yes&text=5" />
+    <img class="img2"  holder="{{getHolder(6)}}" />-->  
+    <div class="col-xs-3"><img class="img-responsive center-block" ng-src="images\RAY DONOVAN - S04.jpg"> </div>
+    <div class="col-xs-3"><img   class="img-responsive center-block" holder="holder.js/300x441?random=yes&text=1" height="100"></div>
+    <div class="col-xs-3"><img class="img-responsive center-block" holder="holder.js/300x441?random=yes&text=2"></div>
+    <div class="col-xs-3 "><img  class="img-responsive center-block" holder="holder.js/300x441?random=yes&text=3"></div>
+    <div class="col-xs-3 "><img  class="img-responsive center-block" holder="holder.js/300x441?random=yes&text=4"></div>
+</div>
+<div class="row no-gutters" hbeimg2 >
+    <hbeimg></hbeimg>
+    <hbeimg></hbeimg>
+    <hbeimg></hbeimg>
+    <hbeimg></hbeimg>
+   
+    <div class="col-xs-3"><img class="img-responsive center-block" holder="holder.js/300x441?random=yes&text=44" /> </div>
+
+</div>
+
+

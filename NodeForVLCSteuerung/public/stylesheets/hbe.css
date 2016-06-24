@@ -1,0 +1,166 @@
+﻿body {
+    background-color: red;
+}
+
+body::before {
+  content: "xs";
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999999;
+  background-color: #000;
+  color: #fff;
+}
+@media (min-width : 768px) { 
+  body::before { 
+    content: "sm"; 
+  }
+}
+@media (min-width : 992px) { 
+  body::before { 
+    content: "md"; 
+  }
+}
+@media (min-width : 1200px) { 
+  body::before { 
+    content: "lg"; 
+  }
+}
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.Steuerung{
+    height:20vh;
+    font-size:6vh;
+    /*margin-top: 10px;*/
+}
+
+.img2 {
+    width:20vw;
+}
+.SteuerungCol {
+
+  padding-top: 10px;
+  text-align: center;
+  /*padding-top: 2vh;*/ 
+}
+.hbe > [class*='col-'] {
+    background-color: lightsteelblue;
+}
+
+.hberowhell {
+    background-color: lightgray;
+}
+
+.hbeR > [class*='col-'] {
+    background-color: lightgreen;
+    /*margin-left: -10px;
+  margin-right:20px*/
+}
+
+h1, h2, h3 {
+    text-align: center;
+    vertical-align: middle;
+}
+h1{
+    font-size: 5vh;
+}
+h2{ font-size:4vh;}
+
+
+/*iPhone4-320  */
+@media screen and (orientation: portrait) and (max-device-width:320px) {
+    h1,h2,h3 {
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    .rwd-break {
+        display: none;
+    }
+}
+
+/*iPhone4-320  */
+@media screen and (orientation: portrait) and (max-device-width:320px) {
+    .hbeImg {
+        width:160px;
+        height: 150px;
+        margin-left: -15px;
+        margin-right: 0;
+    }
+    .notOnIphone {
+        display: none;
+        }
+}
+
+@media screen  and (min-device-width:321px) {
+    .hbeImg {
+        width: 110%;
+        height: 300px;
+        /*height:30vh;*/
+        margin-left: -15px;
+        margin-right: 0;
+    }
+    .onlyOnIphone {
+      display:none;
+    }
+}
+
+.episea {
+   background-color:red;
+    line-height: 250px;
+}
+
+.episeaPurple {
+     background-color: blueviolet ;
+    line-height: 250px;
+}
+
+.episeaRed {
+     background-color: red ;
+    line-height: 250px;
+}
+
+.episeaYellow {
+    background-color: yellow ;
+    line-height: 250px;
+}
+
+.episeaGreen {
+   background-color: lawngreen ;
+    line-height: 250px;
+}
+
+
+
+.textMiddle h1 {
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+}
+
+/*
+ * Row with equal height columns
+ * --------------------------------------------------
+ */
+.row-eq-height {
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex; 
+}
+
+.row.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+    .row.no-gutters > [class^="col-"],
+    .row.no-gutters > [class*=" col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }

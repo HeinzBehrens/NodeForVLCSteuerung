@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodeForVLCSteuerung", "NodeForVLCSteuerung\NodeForVLCSteuerung.njsproj", "{ABA47E9F-06C6-4D5D-8412-FFD3C89CB465}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12168022-1735-4604-A314-26964E25DE7F}"
+	ProjectSection(SolutionItems) = preProject
+		WE-Markdown.css = WE-Markdown.css
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABA47E9F-06C6-4D5D-8412-FFD3C89CB465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABA47E9F-06C6-4D5D-8412-FFD3C89CB465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABA47E9F-06C6-4D5D-8412-FFD3C89CB465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABA47E9F-06C6-4D5D-8412-FFD3C89CB465}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

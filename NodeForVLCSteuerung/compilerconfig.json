@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "public/stylesheets/hbeCssLess.css",
+    "inputFile": "public/stylesheets/hbeCssLess.less"
+  },
+  {
+    "outputFile": "_button-group.css",
+    "inputFile": "_button-group.scss"
+  }
+]
