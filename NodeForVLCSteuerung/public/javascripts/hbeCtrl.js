@@ -114,8 +114,8 @@ angular.module("hbeVLC", ['ngRoute', 'ngAnimate', 'ui.bootstrap'])
         }
     };
 })
-    .controller("mainCtrl", ["$scope", "$timeout", "$interval", "$http", "$location", "$window",
-    function ($scope, $timeout, $interval, $http, $location, $window) {
+    .controller("mainCtrl", ["$scope", "$timeout", "$interval", "$http", "$location", "$window", "$compile",
+    function ($scope, $timeout, $interval, $http, $location, $window, $compile) {
         // this festnageln auf interne Variable self
         var self = this;
         // hier wird die Server-Adresse gepeichert: 192.168.178.xxx
@@ -135,6 +135,17 @@ angular.module("hbeVLC", ['ngRoute', 'ngAnimate', 'ui.bootstrap'])
         $scope.playlist;
         self.name = "Selfname";
         $scope.name = "ScopeName";
+        var aktBilderZeile = {};
+        var testimg = {};
+        var arTestimg = [];
+        var Zufall = Math.floor(Math.random() * 11);
+        Zufall = 8;
+        for (var i = 0; i < Zufall; i++) {
+            var testimg = {};
+            testimg.name = i.toString();
+            testimg.imgSrcNode = (i % 2) == 0 ? "images/ARCHER.jpg" : "images/BLACKISH - S02.jpg";
+            arTestimg.push(testimg);
+        }
         $scope.testfeld = [777, 123, 345, 222];
         // -----------------------------------------------------------------------------
         //
@@ -298,6 +309,64 @@ angular.module("hbeVLC", ['ngRoute', 'ngAnimate', 'ui.bootstrap'])
             else
                 return "episeaPurple";
         };
+        $scope.weiterRechts = function () {
+            aktBilderZeile.Startbild = aktBilderZeile.Startbild + 1;
+            bilderEintragen(aktBilderZeile);
+        };
+        $scope.weiterLinks = function () {
+            aktBilderZeile.Startbild = aktBilderZeile.Startbild - 1;
+            bilderEintragen(aktBilderZeile);
+        };
+        function bilderEintragen(bilderzeile) {
+            // image-Element vorbereiten
+            // <img  class="img-responsive center-block" src="' + arPlayList[i].imgSrcNode + '" width="200"> </div>'
+            var imgEle = angular.element("<img/>");
+            imgEle.addClass("img-responsive center-block");
+            imgEle.attr("width", bilderzeile.BreiteBilder);
+            var rowWithImages;
+            rowWithImages = angular.element(document.querySelector("#hbeIdImg"));
+            rowWithImages.empty();
+            // nun die Bilder hinzufügen
+            var numberLastImage = Math.min(arTestimg.length, aktBilderZeile.Startbild + aktBilderZeile.AnzBilder);
+            for (var i = aktBilderZeile.Startbild; i < numberLastImage; i++) {
+                var newEle = angular.element("<div></div");
+                // beim ersten Element noch den Offset hinzufügen
+                if (i == 0)
+                    newEle.addClass("col-xs-offset-" + bilderzeile.offsetSpalten.toString());
+                // sonst die Spaltenklasse hinzufügen
+                newEle.addClass("col-xs-" + bilderzeile.Spaltenzahl.toString());
+                var newImgEle = angular.element(imgEle.clone());
+                // Bild in imgeinfügen
+                newImgEle.attr("src", arTestimg[i].imgSrcNode);
+                // Bild in Spalte einfügen
+                newEle.append(newImgEle);
+                // wenn ich beim ersten Bild angelangt bin und noch weitere Bilder VORHER existieren, dann wird ein Pfeil eingefügt
+                // letztes Bild ==> i + 1 = numberLastImage, 
+                // weitere Bilder existieren ==> i + 1 < arTestimg.length
+                //
+                if ((i == aktBilderZeile.Startbild) && (aktBilderZeile.Startbild > 0)) {
+                    var imgPfeil = angular.element("<span/>");
+                    imgPfeil.addClass("glyphicon glyphicon-chevron-left hbePfeilLinks");
+                    imgPfeil.attr("ng-click", "weiterLinks()");
+                    newEle.addClass("firstImgDiv"); // das enthaltende Div soll position: relative über CSS bekommen
+                    newEle.append(imgPfeil);
+                }
+                // wenn ich beim letzten Bild angelangt bin und noch weitere Bilder existiern, dann wird ein Pfeil eingefügt
+                // letztes Bild ==> i + 1 = numberLastImage, 
+                // weitere Bilder existieren ==> i + 1 < arTestimg.length
+                //
+                if ((i + 1 == numberLastImage) && (i + 1 < arTestimg.length)) {
+                    var imgPfeil = angular.element("<span/>");
+                    imgPfeil.addClass("glyphicon glyphicon-chevron-right hbePfeil");
+                    imgPfeil.attr("ng-click", "weiterRechts()");
+                    newEle.addClass("lastImgDiv"); // das enthaltende Div soll position: relative über CSS bekommen
+                    newEle.append(imgPfeil);
+                }
+                // Spalte in Reihe einfügen
+                rowWithImages.append(newEle);
+            }
+            $compile(rowWithImages)($scope);
+        }
         // Bilderleiste anlegen
         //      1) Welche Breite hat der Bildschirm ==> Anzahl und Breite der Bilder
         //      2) Bilder darstellen
@@ -309,30 +378,44 @@ angular.module("hbeVLC", ['ngRoute', 'ngAnimate', 'ui.bootstrap'])
             alert(angular.element(document.querySelector("#hbeIdImg")).html());
             // 1) Welche Breite hat der Bildschirm ==> Anzahl und Breite der Bilder
             //
-            var AnzBilder, BreiteBilder;
+            // welche Breite hat die Titel-Reihe
+            alert("Breite von Show-Titel:" + document.getElementById('showtitel').offsetWidth);
             var w = $window.innerWidth;
+            alert("Breite zur Berechnung von Bildbreite: " + w);
             if (w < 768) {
-                AnzBilder = 4;
+                aktBilderZeile.AnzBilder = 4;
+                aktBilderZeile.Spaltenzahl = 3;
             }
             else if (w < 992) {
-                AnzBilder = 4;
+                aktBilderZeile.AnzBilder = 4;
+                aktBilderZeile.Spaltenzahl = 3;
             }
             else if (w < 1200) {
-                AnzBilder = 6;
+                aktBilderZeile.AnzBilder = 6;
+                aktBilderZeile.Spaltenzahl = 2;
             }
             else {
-                AnzBilder = 6;
+                aktBilderZeile.AnzBilder = 6;
+                aktBilderZeile.Spaltenzahl = 2;
             }
-            BreiteBilder = w / AnzBilder;
-            var ele;
-            ele = angular.element(document.querySelector("#hbeIdImg"));
-            ele.empty();
-            for (var i = 0; i < 4; i++) {
-                // <img  class="img-responsive center-block" holder="holder.js/300x441?random=yes&text=1" height="100">
-                //          ele.append( '<div class="col-xs-3"><img  class="img-responsive center-block" src="' + arPlayList[i].imgSrcNode + '" width="200"> </div>' )
-                ele.append('<div class="col-xs-3"><img  class="img-responsive center-block" src="' + arPlayList[i].imgSrcNode + '" width="200"> </div>');
+            aktBilderZeile.BreiteBilder = Math.floor(w / aktBilderZeile.AnzBilder);
+            alert("Aktuelle Bilder/Platz: " + arTestimg.length + "/" + aktBilderZeile.AnzBilder);
+            //      2) Bilder darstellen
+            //         a) aktuelle Anzahl < Platz ==> zentrieren
+            aktBilderZeile.Startbild = 0;
+            aktBilderZeile.offsetSpalten = 0;
+            if (arTestimg.length < aktBilderZeile.AnzBilder) {
+                // offset berechnen in Anzahl der Spalten
+                aktBilderZeile.offsetSpalten = Math.floor((aktBilderZeile.AnzBilder - arTestimg.length) / 2) * aktBilderZeile.Spaltenzahl;
+                aktBilderZeile.Startbild = 0;
+                bilderEintragen(aktBilderZeile);
             }
-            // angular.bootstrap( document, ["hbeVLC"] )
+            else if (arTestimg.length > aktBilderZeile.AnzBilder) {
+                bilderEintragen(aktBilderZeile);
+            }
+            else {
+                bilderEintragen(aktBilderZeile);
+            }
         }
         // getfullinfo fragt beim Node-Server an, und holt sich von dort die Infos über laufendes Video
         // und Playlist
@@ -340,11 +423,13 @@ angular.module("hbeVLC", ['ngRoute', 'ngAnimate', 'ui.bootstrap'])
         // aber noch in das entsprechende Image-Verzeichnis auf dem Node-Server kopiert werden)
         function getFullInfo() {
             // var url = "http://192.168.178.18:6001/getfullinfo"
+            var config = {};
+            config.timeout = 1000;
             var url = "http://" + ServerAddress + ":6001/getfullinfo";
             //           if ( navigator.platform === "ARM" ) { alert( "ID:" + globalWinMobile ) }
             //           if ( navigator.platform === "ARM" ) { alert( "URL:" + url ) }
-            $http.get(url).then(function () { alert("erfolg"); }, function (reason) { alert("error aus http.get"); }, function () { alert("notify"); });
-            $http.get(url)
+            // $http.get( url, config ).then( function () { alert( "erfolg" ) }, function ( reason: any ) { alert( "error aus http.get" ) }, function () { alert( "notify" ) })
+            $http.get(url, config)
                 .then(// success
             function (response) {
                 //                   if ( navigator.platform === "ARM" ) { alert( "Get-Success" ) }
@@ -370,6 +455,7 @@ angular.module("hbeVLC", ['ngRoute', 'ngAnimate', 'ui.bootstrap'])
             function (response) {
                 //                  if ( navigator.platform === "ARM" ) { alert( "Get-Error" ) }
                 alert("Fehler in getFullInfo: " + response.errmsg);
+                anlegenBilderleiste();
             }); // then
         } // ...function getFullInfo
         $scope.$on("$destroy", function () {

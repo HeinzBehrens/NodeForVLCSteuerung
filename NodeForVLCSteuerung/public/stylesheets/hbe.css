@@ -2,48 +2,92 @@
     background-color: red;
 }
 
+.lastImgDiv, .firstImgDiv  {
+    position: relative;
+}
+
+.hbePfeil {
+    color: white;
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.hbePfeilLinks {
+    color: white;
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
 body::before {
-  content: "xs";
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999999;
-  background-color: #000;
-  color: #fff;
-}
-@media (min-width : 768px) { 
-  body::before { 
-    content: "sm"; 
-  }
-}
-@media (min-width : 992px) { 
-  body::before { 
-    content: "md"; 
-  }
-}
-@media (min-width : 1200px) { 
-  body::before { 
-    content: "lg"; 
-  }
+    content: "xs";
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999999;
+    background-color: #000;
+    color: #fff;
 }
 
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+@media (min-width : 768px) {
+    body::before {
+        content: "sm";
+    }
+}
 
-.Steuerung{
-    height:20vh;
-    font-size:6vh;
+@media (min-width : 992px) {
+    body::before {
+        content: "md";
+    }
+}
+
+@media (min-width : 1200px) {
+    body::before {
+        content: "lg";
+    }
+}
+
+/*text shadow effect*/
+.selector {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.nav, .pagination, .carousel, .panel-title a {
+    cursor: pointer;
+}
+
+.Steuerung {
+    height: 20vh;
+    font-size: 6vh;
     /*margin-top: 10px;*/
 }
 
 .img2 {
-    width:20vw;
+    width: 20vw;
 }
-.SteuerungCol {
 
-  padding-top: 10px;
-  text-align: center;
-  /*padding-top: 2vh;*/ 
+.SteuerungCol {
+    padding-top: 10px;
+    text-align: center;
+    /*padding-top: 2vh;*/
 }
+
 .hbe > [class*='col-'] {
     background-color: lightsteelblue;
 }
@@ -62,15 +106,19 @@ h1, h2, h3 {
     text-align: center;
     vertical-align: middle;
 }
-h1{
+
+h1 {
     font-size: 5vh;
 }
-h2{ font-size:4vh;}
+
+h2 {
+    font-size: 4vh;
+}
 
 
 /*iPhone4-320  */
 @media screen and (orientation: portrait) and (max-device-width:320px) {
-    h1,h2,h3 {
+    h1, h2, h3 {
         margin-top: 4px;
         margin-bottom: 4px;
     }
@@ -86,17 +134,18 @@ h2{ font-size:4vh;}
 /*iPhone4-320  */
 @media screen and (orientation: portrait) and (max-device-width:320px) {
     .hbeImg {
-        width:160px;
+        width: 160px;
         height: 150px;
         margin-left: -15px;
         margin-right: 0;
     }
+
     .notOnIphone {
         display: none;
-        }
+    }
 }
 
-@media screen  and (min-device-width:321px) {
+@media screen and (min-device-width:321px) {
     .hbeImg {
         width: 110%;
         height: 300px;
@@ -104,33 +153,34 @@ h2{ font-size:4vh;}
         margin-left: -15px;
         margin-right: 0;
     }
+
     .onlyOnIphone {
-      display:none;
+        display: none;
     }
 }
 
 .episea {
-   background-color:red;
+    background-color: red;
     line-height: 250px;
 }
 
 .episeaPurple {
-     background-color: blueviolet ;
+    background-color: blueviolet;
     line-height: 250px;
 }
 
 .episeaRed {
-     background-color: red ;
+    background-color: red;
     line-height: 250px;
 }
 
 .episeaYellow {
-    background-color: yellow ;
+    background-color: yellow;
     line-height: 250px;
 }
 
 .episeaGreen {
-   background-color: lawngreen ;
+    background-color: lawngreen;
     line-height: 250px;
 }
 
@@ -147,16 +197,15 @@ h2{ font-size:4vh;}
  * --------------------------------------------------
  */
 .row-eq-height {
-  
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex; 
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
 }
 
 .row.no-gutters {
-    margin-right: 0;
-    margin-left: 0;
+    margin-right: -15px;
+    margin-left: -15px;
 }
 
     .row.no-gutters > [class^="col-"],
